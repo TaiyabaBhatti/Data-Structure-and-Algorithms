@@ -7,39 +7,62 @@ public class SortingAlgorithms {
 
         // sort in ascending order
 
-        //bubble sort
+
         int[] arrayOriginal={180,165,150,170,145};
         int[] arrayBubble = Arrays.copyOf(arrayOriginal, arrayOriginal.length);
         int[] arraySelection = Arrays.copyOf(arrayOriginal, arrayOriginal.length);
         int[] arrayInsertion = Arrays.copyOf(arrayOriginal,arrayOriginal.length);
-        int[] arrayQuick=Arrays.copyOf(arrayOriginal,arrayOriginal.length);
+          int[] arrayQuick={8,13,7,2,4,17,12,6};
 
+        //bubble sort
         long timebeforeA=System.nanoTime();
         bubbleSort(arrayBubble);
         long timeafterA= System.nanoTime();
         System.out.println("Execution time difference for bubble sort: "+(timeafterA-timebeforeA));
 
-
+        //selection sort
         long timebeforeB=System.nanoTime();
         selectionSort(arraySelection);
         long timeafterB= System.nanoTime();
         System.out.println("Execution time difference for selection sort: "+(timeafterB-timebeforeB));
 
+        //insertion sort
         long timebeforeC=System.nanoTime();
         insertionSort(arrayInsertion);
         long timeafterC= System.nanoTime();
         System.out.println("Execution time difference for insertion sort: "+(timeafterC-timebeforeC));
 
+        //quick sort
         long timebeforeD=System.nanoTime();
-        quicksort(arrayQuick);
+        quicksort(arrayQuick,0,arrayQuick.length-1);
         long timeafterD= System.nanoTime();
-        System.out.println("Execution time difference for insertion sort: "+(timeafterD-timebeforeD));
+        System.out.println("Execution time difference for quick sort: "+(timeafterD-timebeforeD));
 
     }
-
-    private static void quicksort(int[] arrayQuick) {
-
-
+public static int partition(int[] array,int low, int high){
+        int i=low-1;     //to make places for smallest elements
+        int temp;
+        int pivotEle=array[high];
+    for (int j = low; j <high ; j++) {
+        if (array[j]<pivotEle){
+            i++;
+            temp=array[i];
+            array[i]=array[j];
+            array[j]=temp;
+        }
+    }
+        i++;
+    temp=array[i];
+    array[i]=pivotEle;
+    array[high]=temp;
+    return i;
+}
+    private static void quicksort(int[] arrayQuick,int low,int high) {
+        if(low<high) {
+            int pivIndex = partition(arrayQuick, low, high);
+            quicksort(arrayQuick,low,pivIndex-1);
+            quicksort(arrayQuick,pivIndex+1,high);
+        }
     }
     public static void bubbleSort(int[] array){
        int temp;
@@ -74,7 +97,6 @@ int j,current;
             j=i-1;
             current=array[i];
             while (j>=0 && array[j]>current){
-
                 array[j+1]=array[j];
                 j--;
             }
