@@ -1,7 +1,5 @@
 package com.Stacks;
 
-import static com.sun.tools.javac.jvm.ByteCodes.illegal;
-
 interface Stack1 {
     public Object peek();
     public Object pop();
@@ -65,7 +63,9 @@ public class twoStacks implements Stack1 {
 
         int sizeOfColdrink = coldrink.size();
 
-        for(int i=0; i<sizeOfColdrink; i++)
+        for(int i=0; i<sizeOfColdrink; i++){
+
+        }
     }
 
 }
